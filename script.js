@@ -15,13 +15,17 @@ function showDetail(event, type) {
   };
   
   const images = {
-    happy: "https://picsum.photos/1200/800?sun",
-    relax: "https://picsum.photos/1200/800?nature",
-    tired: "https://picsum.photos/1200/800?night",
-    sad: "https://picsum.photos/1200/800?rain",
-    angry: "https://picsum.photos/1200/800?red"
+    happy: "https://picsum.photos/800/500?sun",
+    relax: "https://picsum.photos/800/500?nature",
+    tired: "https://picsum.photos/800/500?night",
+    sad: "https://picsum.photos/800/500?rain",
+    angry: "https://picsum.photos/800/500?red"
   };
 
+Object.values(images).forEach(src => {
+  const img = new Image();
+  img.src = src;
+});
   document.getElementById("bg-image").style.backgroundImage =
     "url(" + images[type] + ")";
 
