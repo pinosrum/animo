@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>気分で音楽選択</title>
+
+<style>
+body {
+  font-family: sans-serif;
+  background: #dbeafe;
+  text-align: center;
+  transition: 0.5s;
+}
+
+.container {
+  background: #eee;
+  width: 80%;
+  margin: 50px auto;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+h1 {
+  text-align: left;
+}
+
+/* 上の気分ボタン */
+.moods button {
+  margin: 10px;
+  padding: 12px 20px;
+  border-radius: 20px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* 色 */
+.happy { background: #fbcfe8; }
+.relax { background: #bbf7d0; }
+.tired { background: #bfdbfe; }
+.sad   { background: #cbd5f5; }
+.angry { background: #fecaca; }
+
+/* 選択中 */
+.selected {
+  outline: 3px solid #333;
+}
+
+/* 押した感 */
+.moods button:active {
+  transform: scale(0.95);
+}
+
+/* 下の詳細 */
+.details {
+  display: none;
+  margin-top: 30px;
+}
+
+.detail-box {
+  display: none;
+  margin-top: 20px;
+}
+
+.detail-box button {
+  display: block;
+  margin: 10px auto;
+  padding: 10px;
+  width: 200px;
+  border-radius: 15px;
+  border: none;
+  cursor: pointer;
+}
+
+/* カード */
+.card {
+  background: white;
+  width: 200px;
+  padding: 15px;
+  border-radius: 15px;
+  margin: 20px auto;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 0.5s forwards;
+}
+
+.card img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+/* 再生ボタン */
+.play {
+  margin-top: 10px;
+  background: #22c55e;
+  border: none;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  cursor: pointer;
+  position: relative;
+  transition: 0.2s;
+}
+
+/* ▶マーク */
+.play::before {
+  content: "";
+  position: absolute;
+  left: 17px;
+  top: 12px;
+  border-left: 12px solid white;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+}
+
+.play:hover {
+  transform: scale(1.1);
+}
+
+/* アニメーション */
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 結果 */
+#result {
+  margin-top: 30px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1>気分選択</h1>
+
+  <!-- 1段階目 -->
+  <div class="moods">
+    <button class="happy" onclick="showDetail(event, 'happy')">楽しい</button>
+    <button class="relax" onclick="showDetail(event, 'relax')">リラックス</button>
+    <button class="tired" onclick="showDetail(event, 'tired')">疲れた</button>
+    <button class="sad" onclick="showDetail(event, 'sad')">しんみり</button>
+    <button class="angry" onclick="showDetail(event, 'angry')">イライラ</button>
+  </div>
+
+  <!-- 2段階目 -->
+  <div class="details">
+
+    <div id="happy" class="detail-box">
+      <button onclick="showResult('テンション上げる曲')">テンション上げる</button>
+      <button onclick="showResult('ノリたい曲')">ノリたい</button>
+      <button onclick="showResult('明るい気分の曲')">明るい気分</button>
+    </div>
+
+    <div id="relax" class="detail-box">
+      <button onclick="showResult('チル系')">チル</button>
+      <button onclick="showResult('まったり系')">まったり</button>
+      <button onclick="showResult('夜に聴きたい曲')">夜に聴きたい</button>
+    </div>
+
+    <div id="tired" class="detail-box">
+      <button onclick="showResult('眠りたい音楽')">眠りたい</button>
+      <button onclick="showResult('落ち着く音楽')">落ち着きたい</button>
+      <button onclick="showResult('静かな音楽')">静かに過ごす</button>
+    </div>
+
+    <div id="sad" class="detail-box">
+      <button onclick="showResult('切ない曲')">切ない</button>
+      <button onclick="showResult('雨の日の曲')">雨の日</button>
+      <button onclick="showResult('ピアノ系')">ピアノ系</button>
+    </div>
+
+    <div id="angry" class="detail-box">
+      <button onclick="showResult('発散できる曲')">発散したい</button>
+      <button onclick="showResult('激しめ')">激しめ</button>
+      <button onclick="showResult('落ち着く曲')">落ち着きたい</button>
+    </div>
+
+  </div>
+
+  <div id="result"></div>
+
+</div>
+
+<script>
+function showDetail(event, type) {
+  // 選択状態
+  document.querySelectorAll(".moods button").forEach(btn => btn.classList.remove("selected"));
+  event.target.classList.add("selected");
+
+  // 表示切り替え
+  document.querySelectorAll(".detail-box").forEach(el => el.style.display = "none");
+  document.querySelector(".details").style.display = "block";
+  document.getElementById(type).style.display = "block";
+
+  // 背景色
+  const bg = {
+    happy: "#fce7f3",
+    relax: "#dcfce7",
+    tired: "#dbeafe",
+    sad: "#e0e7ff",
+    angry: "#fee2e2"
+  };
+  document.body.style.background = bg[type];
+
+  document.getElementById("result").innerHTML = "";
+}
+
+function showResult(text) {
+  const result = document.getElementById("result");
+
+  // 背景変化（詳細）
+  const colors = {
+    "テンション上げる曲": "#fff1f2",
+    "チル系": "#ecfdf5",
+    "眠りたい音楽": "#eff6ff",
+    "切ない曲": "#eef2ff",
+    "発散できる曲": "#fef2f2"
+  };
+  document.body.style.background = colors[text] || document.body.style.background;
+
+  // カード表示
+  result.innerHTML = `
+    <div class="card">
+      <img src="https://picsum.photos/200?random=${Math.random()}">
+      <p>${text}</p>
+      <button class="play"></button>
+    </div>
+  `;
+}
+</script>
+
+</body>
+</html>
