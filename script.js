@@ -26,13 +26,21 @@ Object.values(images).forEach(src => {
   const img = new Image();
   img.src = src;
 });
+
   document.getElementById("bg-image").style.backgroundImage =
     "url(" + images[type] + ")";
 
   document.getElementById("result").innerHTML = "";
+
+if (window.innerWidth <= 768) {
+  document.getElementById("backBtn").style.display = "inline-block";
+}
 }
 
 function showResult(text) {
+  if (window.innerWidth <= 768) {
+  document.querySelector(".details").style.display = "none";
+}
   const result = document.getElementById("result");
 
   result.innerHTML = `
@@ -42,4 +50,24 @@ function showResult(text) {
       <button class="play"></button>
     </div>
   `;
+}
+
+function goBack() {
+  if (window.innerWidth > 768) return;
+
+  const result = document.getElementById("result");
+  const details = document.querySelector(".details");
+
+  if (result.innerHTML !== "") {
+    result.innerHTML = "";
+    details.style.display = "block";
+    return;
+  }
+
+  details.style.display = "none";
+  document.querySelectorAll(".moods button").forEach(btn =>
+    btn.classList.remove("selected")
+  );
+
+  document.getElementById("backBtn").style.display = "none";
 }
