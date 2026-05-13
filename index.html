@@ -2,6 +2,7 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>気分で音楽選択</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;700&display=swap" rel="stylesheet">
@@ -169,6 +170,74 @@ h1 {
 #result {
   margin-top: 30px;
 }
+
+@media (max-width: 768px) {
+
+  .container {
+    width: 92%;
+    margin: 10px auto;
+    padding: 20px 15px;
+    border-radius: 25px;
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 26px;
+    margin-bottom: 20px;
+  }
+
+  .moods {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .moods button {
+    width: 110px;
+    font-size: 13px;
+    padding: 10px;
+  }
+
+  .detail-box button {
+    width: 90%;
+    font-size: 14px;
+  }
+
+  .card {
+    width: 88%;
+    padding: 18px;
+    margin-top: 25px;
+    border-radius: 22px;
+  }
+
+  .card img {
+    width: 100%;
+    border-radius: 15px;
+  }
+
+  .play {
+    width: 52px;
+    height: 52px;
+    margin-top: 15px;
+  }
+
+  #result {
+    display: flex;
+    justify-content: center;
+  }
+
+  #backBtn {
+    border: none;
+    background: rgba(255,255,255,0.7);
+    padding: 8px 14px;
+    border-radius: 15px;
+    cursor: pointer;
+    margin-bottom: 15px;
+  }
+}
+
+
 </style>
 </head>
 
@@ -179,6 +248,8 @@ h1 {
 
 <div class="container">
   <h1>気分選択</h1>
+
+  <button id="backBtn" onclick="goBack()" style="display:none;">← 戻る</button>
 
   <!-- 1段階目 -->
   <div class="moods">
