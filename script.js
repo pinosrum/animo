@@ -33,19 +33,24 @@ Object.values(images).forEach(src => {
   document.getElementById("result").innerHTML = "";
 
 if (window.innerWidth <= 768) {
+  document.querySelector(".moods").style.display = "none";
+  document.querySelector(".details").style.display = "block";
   document.getElementById("backBtn").style.display = "inline-block";
 }
 }
 
 function showResult(text) {
-  if (window.innerWidth <= 768) {
-  document.querySelector(".details").style.display = "none";
-}
   const result = document.getElementById("result");
+
+  if (window.innerWidth <= 768) {
+    document.querySelector(".details").style.display = "none";
+    result.style.display = "flex";
+  }
 
   result.innerHTML = `
     <div class="card">
-      <img src="https://picsum.photos/200?random=${Math.random()}">
+      <p>今の気分に合う1曲</p>
+      <img src="https://picsum.photos/300?random=${Math.random()}">
       <p>${text}</p>
       <button class="play"></button>
     </div>
@@ -57,14 +62,18 @@ function goBack() {
 
   const result = document.getElementById("result");
   const details = document.querySelector(".details");
+  const moods = document.querySelector(".moods");
 
   if (result.innerHTML !== "") {
     result.innerHTML = "";
+    result.style.display = "none";
     details.style.display = "block";
     return;
   }
 
   details.style.display = "none";
+  moods.style.display = "flex";
+
   document.querySelectorAll(".moods button").forEach(btn =>
     btn.classList.remove("selected")
   );
