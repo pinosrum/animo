@@ -72,7 +72,15 @@ function goBack() {
   }
 
   details.style.display = "none";
-  moods.style.display = "flex";
+result.style.display = "none";
+result.innerHTML = "";
+moods.style.display = "grid";
+
+document.querySelectorAll(".moods button").forEach(btn =>
+  btn.classList.remove("selected")
+);
+
+document.getElementById("backBtn").style.display = "none";
 
   document.querySelectorAll(".moods button").forEach(btn =>
     btn.classList.remove("selected")
