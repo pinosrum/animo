@@ -173,70 +173,102 @@ h1 {
 
 @media (max-width: 768px) {
 
-  .container {
-    width: 92%;
-    margin: 10px auto;
-    padding: 20px 15px;
-    border-radius: 25px;
+  body {
+    margin: 0;
+    overflow: hidden;
   }
 
-  h1 {
-    text-align: center;
-    font-size: 26px;
-    margin-bottom: 20px;
-  }
+  .container {
+  width: 100%;
+  min-height: 100vh;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 18px 16px;
+  border-radius: 0;
+  background: rgba(255,255,255,0.10);
+  backdrop-filter: blur(16px);
+  display: flex;
+  flex-direction: column;
+}
+
+h1 {
+  text-align: center;
+  font-size: 22px;
+  margin-bottom: 18px;
+  color: #1f2937;
+}
+
 
   .moods {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 8px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    width: 100%;
   }
 
   .moods button {
-    width: 110px;
-    font-size: 13px;
-    padding: 10px;
-  }
-
-  .detail-box button {
-    width: 90%;
+    width: 100%;
+    padding: 14px;
+    border-radius: 18px;
     font-size: 14px;
   }
 
+  .moods button,
+  .detail-box button {
+  color: #1f2937;
+  }
+
+  .details {
+    margin-top: 30px;
+  }
+
+  .detail-box button {
+    width: 100%;
+    padding: 14px;
+    margin: 12px 0;
+    border-radius: 18px;
+  }
+
+ #result {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+}
+
+.card {
+  width: 88%;
+  padding: 16px;
+  margin: auto 0 20px;
+  border-radius: 24px;
+}
+
   .card {
-    width: 88%;
-    padding: 18px;
-    margin-top: 25px;
-    border-radius: 22px;
+  width: 88%;
+  padding: 16px;
+  margin: auto 0 20px;
+  border-radius: 24px;
+  background: rgba(255,255,255,0.55);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 4px 18px rgba(0,0,0,0.08);
   }
 
   .card img {
-    width: 100%;
-    border-radius: 15px;
-  }
-
-  .play {
-    width: 52px;
-    height: 52px;
-    margin-top: 15px;
-  }
-
-  #result {
-    display: flex;
-    justify-content: center;
+  width: 100%;
+  display: block;
+  border-radius: 18px;
   }
 
   #backBtn {
-    border: none;
-    background: rgba(255,255,255,0.7);
-    padding: 8px 14px;
-    border-radius: 15px;
-    cursor: pointer;
-    margin-bottom: 15px;
+  background: rgba(255,255,255,0.35);
+  color: #1f2937;
+  border: 1px solid rgba(255,255,255,0.5);
+  padding: 10px 16px;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  font-size: 15px;
   }
 }
-
 
 </style>
 </head>
