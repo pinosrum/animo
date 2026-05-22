@@ -32,13 +32,16 @@ body {
 }
 
 .container {
-  background: rgba(200, 200, 200, 0.3); /* ← 薄くする */
-  width: 65%; /* ← 少し小さく */
-  margin: 40px auto;
-  padding: 25px;
+  background: rgba(200, 200, 200, 0.3);
+  width: 65%;
+  margin: 10px auto;
+  padding: 20px;
   border-radius: 20px;
-  backdrop-filter: blur(10px); /* ← ガラスっぽく（超おすすめ） */
+  backdrop-filter: blur(4px);
+  min-height: 85vh;
+  position: relative;
 }
+
 h1 {
   text-align: left;
 }
@@ -94,7 +97,16 @@ h1 {
 /* 詳細 */
 .details {
   display: none;
-  margin-top: 30px;
+  margin-top: 15px;
+  position: absolute;
+  left: 60px;
+  top: 160px;
+}
+
+.detail-box button {
+  display: block;
+  margin: 8px 0;
+  width: 220px;
 }
 
 .detail-box {
@@ -106,20 +118,30 @@ h1 {
   display: block;
   margin: 10px auto;
   padding: 10px;
-  width: 200px;
+  width: 220px;
   border-radius: 15px;
   border: none;
   cursor: pointer;
+
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(8px);
 }
 
 /* カード */
 .card {
-  background: white;
-  width: 200px;
-  padding: 15px;
-  border-radius: 15px;
-  margin: 20px auto;
+  background: rgba(255, 255, 255, 0.25);
+
+  width: 220px;
+  height: 360px;
+
+  padding: 14px;
+  border-radius: 24px;
+
+  backdrop-filter: blur(14px);
   box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+
+  position: relative;
+  top: -35px;
 
   opacity: 0;
   transform: translateY(20px);
@@ -127,35 +149,88 @@ h1 {
 }
 
 .card img {
-  width: 100%;
+  width: 88%;
+  aspect-ratio: 1 / 1;
+
+  object-fit: cover;
+
   border-radius: 10px;
+
+  display: block;
+  margin: 0 auto;
 }
 
-/* 再生ボタン */
+/* コントロール全体 */
+.music-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  margin-top: 12px;
+}
+
+/* メイン再生 */
 .play {
-  margin-top: 10px;
-  background: #22c55e;
+  background: transparent;
   border: none;
-  border-radius: 50%;
-  width: 45px;
-  height: 45px;
+  color: black;
+  font-size: 26px;
   cursor: pointer;
-  position: relative;
   transition: 0.2s;
-}
-
-.play::before {
-  content: "";
-  position: absolute;
-  left: 17px;
-  top: 12px;
-  border-left: 12px solid white;
-  border-top: 8px solid transparent;
-  border-bottom: 8px solid transparent;
+  padding: 0;
+  line-height: 1;
 }
 
 .play:hover {
+  transform: none;
+}
+
+/* 小さいボタン */
+.sub-btn {
+  background: transparent;
+  border: none;
+  color: black;
+  font-size: 22px;
+  cursor: pointer;
+  opacity: 0.7;
+  line-height: 1;
+}
+
+.sub-btn:hover {
+  opacity: 1;
   transform: scale(1.1);
+}
+
+/* シークバー横 */
+.progress-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  margin-top: 12px;
+}
+
+/* 時間 */
+.time {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+/* バー */
+.progress {
+  flex: 1;
+  height: 5px;
+  background: rgba(0,0,0,0.2);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+/* 再生済み */
+.progress-bar {
+  width: 35%;
+  height: 100%;
+  background: black;
+  border-radius: 999px;
 }
 
 /* アニメ */
@@ -168,7 +243,9 @@ h1 {
 
 /* 結果 */
 #result {
-  margin-top: 30px;
+  position: absolute;
+  top: 220px;
+  right: 150px;
 }
 
 @media (max-width: 768px) {
@@ -189,6 +266,7 @@ h1 {
   backdrop-filter: blur(16px);
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 h1 {
@@ -218,17 +296,7 @@ h1 {
   color: #1f2937;
   }
 
-  .details {
-    margin-top: 30px;
-  }
-
-  .detail-box button {
-    width: 100%;
-    padding: 14px;
-    margin: 12px 0;
-    border-radius: 18px;
-  }
-
+  
  #result {
   display: flex;
   justify-content: center;
