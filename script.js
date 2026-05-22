@@ -47,14 +47,45 @@ function showResult(text) {
     result.style.display = "flex";
   }
 
-  result.innerHTML = `
-    <div class="card">
-      <p>今の気分に合う1曲</p>
-      <img src="https://picsum.photos/300?random=${Math.random()}">
-      <p>${text}</p>
-      <button class="play"></button>
+ result.innerHTML = `
+  <div class="card">
+
+    <p>今の気分に合う1曲</p>
+
+    <img src="https://picsum.photos/300?random=${Math.random()}">
+
+    <p>${text}</p>
+
+    <div class="music-controls">
+
+      <button class="sub-btn">
+        ⏮
+      </button>
+
+      <button class="play" onclick="togglePlay(this)">
+        ▶
+      </button>
+
+      <button class="sub-btn">
+        ⏭
+      </button>
+
     </div>
-  `;
+
+    <div class="progress-wrap">
+
+      <span class="time">1:21</span>
+
+      <div class="progress">
+        <div class="progress-bar"></div>
+      </div>
+
+      <span class="time">3:57</span>
+
+    </div>
+
+  </div>
+`;
 }
 
 function goBack() {
@@ -87,4 +118,12 @@ document.getElementById("backBtn").style.display = "none";
   );
 
   document.getElementById("backBtn").style.display = "none";
+}
+
+function togglePlay(button) {
+  if (button.innerHTML === "▶") {
+    button.innerHTML = "⏸";
+  } else {
+    button.innerHTML = "▶";
+  }
 }
