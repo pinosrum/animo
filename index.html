@@ -250,92 +250,101 @@ h1 {
 
 @media (max-width: 768px) {
 
-  body {
-    margin: 0;
-    overflow: hidden;
-  }
-
-  .container {
-  width: 100%;
-  min-height: 100vh;
-  box-sizing: border-box;
+body {
   margin: 0;
-  padding: 18px 16px;
+  overflow-x: hidden;
+}
+
+/* コンテナ */
+.container {
+  width: 92%;
+  min-height: 100vh;
+
+  padding: 20px;
+
   border-radius: 0;
-  background: rgba(255,255,255,0.10);
-  backdrop-filter: blur(16px);
+
+  box-sizing: border-box;
+}
+
+/* タイトル */
+h1 {
+  font-size: 24px;
+}
+
+/* 気分ボタン */
+.moods {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.moods button {
+  font-size: 13px;
+  padding: 10px 16px;
+}
+
+/* 詳細 */
+.details {
+  position: static !important;
+  width: 100%;
+  margin-top: 20px;
   display: flex;
   flex-direction: column;
-  position: relative;
+  align-items: center;
 }
 
-h1 {
-  text-align: center;
-  font-size: 22px;
-  margin-bottom: 18px;
-  color: #1f2937;
+.detail-box {
+  display: none;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
 }
 
+.detail-box button {
+  width: 68%;
+  max-width: 200px;
+  margin: 10px 0;
+}
 
-  .moods {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-    width: 100%;
-  }
+/* 結果エリア */
+#result {
+  position: static;
 
-  .moods button {
-    width: 100%;
-    padding: 14px;
-    border-radius: 18px;
-    font-size: 14px;
-  }
+  margin-top: 30px;
 
-  .moods button,
-  .detail-box button {
-  color: #1f2937;
-  }
-
-  
- #result {
   display: flex;
   justify-content: center;
-  align-items: center;
-  flex: 1;
 }
 
+/* カード */
 .card {
-  width: 88%;
-  padding: 16px;
-  margin: auto 0 20px;
-  border-radius: 24px;
+  width: 220px;
+  height: 360px;
+
+  top: 0;
 }
 
-  .card {
+/* ジャケット */
+.card img {
   width: 88%;
-  padding: 16px;
-  margin: auto 0 20px;
-  border-radius: 24px;
-  background: rgba(255,255,255,0.55);
-  backdrop-filter: blur(16px);
-  box-shadow: 0 4px 18px rgba(0,0,0,0.08);
-  }
+}
 
-  .card img {
-  width: 100%;
-  display: block;
-  border-radius: 18px;
-  }
+/* 再生ボタン */
+.play {
+  font-size: 26px;
+}
 
-  #backBtn {
-  background: rgba(255,255,255,0.35);
-  color: #1f2937;
-  border: 1px solid rgba(255,255,255,0.5);
-  padding: 10px 16px;
-  border-radius: 20px;
-  backdrop-filter: blur(10px);
-  font-size: 15px;
-  }
+/* サブボタン */
+.sub-btn {
+  font-size: 22px;
+}
+
+/* 戻るボタン */
+#backBtn {
+  margin-bottom: 16px;
+}
+
 }
 
 </style>
