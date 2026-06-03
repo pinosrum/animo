@@ -1,4 +1,17 @@
 function showDetail(event, type) {
+
+  fetch("/save-mood", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    mood: currentMood,
+    song: track.name,
+    artist: track.artists[0].name
+  })
+});
+
   document.querySelectorAll(".moods button").forEach(btn => btn.classList.remove("selected"));
   event.target.classList.add("selected");
 
@@ -127,3 +140,30 @@ function togglePlay(button) {
     button.innerHTML = "▶";
   }
 }
+
+async function getMusic() {
+  const tokenRes = await fetch("/token");
+  const tokenData = await tokenRes.json();
+
+  const token = tokenData.access_token;
+
+  const response = await fetch(
+    "https://api.spotify.com/v1/search?q=jpop&type=track&limit=10",
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+
+  const data = await response.json();
+
+console.log(response);
+console.log(data);
+console.log(data.tracks.items[0].name);
+console.log(data.tracks.items[0].artists[0].name);
+}
+
+getMusic();
+
+console.log("script loaded");
