@@ -1,15 +1,8 @@
-app.use(express.json());
-
 const express = require("express");
 const axios = require("axios");
 require("dotenv").config();
 
 const app = express();
-
-app.use(express.static(__dirname));const express = require("express");
-
-const axios = require("axios");
-require("dotenv").config();
 
 app.use(express.json());
 app.use(express.static(__dirname));
@@ -44,4 +37,3 @@ app.post("/save-mood", (req, res) => {
 app.listen(3000, () => {
   console.log("Server running");
 });
-
