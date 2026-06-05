@@ -5,10 +5,8 @@ function showDetail(event, type) {
   headers: {
     "Content-Type": "application/json"
   },
-  body: JSON.stringify({
-    mood: currentMood,
-    song: track.name,
-    artist: track.artists[0].name
+   body: JSON.stringify({
+    mood: type
   })
 });
 
@@ -52,7 +50,9 @@ if (window.innerWidth <= 768) {
 }
 }
 
-function showResult(text) {
+async function showResult(text) {
+  const track = await getMusic();
+
   const result = document.getElementById("result");
 
   if (window.innerWidth <= 768) {
@@ -65,9 +65,10 @@ function showResult(text) {
 
     <p>今の気分に合う1曲</p>
 
-    <img src="https://picsum.photos/300?random=${Math.random()}">
+    <img src="${track.album.images[0].url}">
 
-    <p>${text}</p>
+<p>${track.name}</p>
+<p>${track.artists[0].name}</p>
 
     <div class="music-controls">
 
@@ -158,12 +159,22 @@ async function getMusic() {
 
   const data = await response.json();
 
-console.log(response);
-console.log(data);
-console.log(data.tracks.items[0].name);
-console.log(data.tracks.items[0].artists[0].name);
+const random =
+  Math.floor(Math.random() * data.tracks.items.length);
+
+const track = data.tracks.items[random];
+
+console.log("track取得", track);
+
+return track;
+
 }
 
-getMusic();
-
 console.log("script loaded");
+
+document
+  .getElementById("spotify-login")
+  .addEventListener("click", () => {
+    console.log("spotify login clicked");
+  });
+
